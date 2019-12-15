@@ -1,0 +1,102 @@
+.header {
+  padding-top: 10px;
+  margin: 0 30px;
+}
+.header__logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.header nav ul {
+  float: right;
+  padding: 0;
+  list-style-type: none;
+  text-align: center;
+}
+.header nav ul li {
+  float: left;
+  margin-right: 30px;
+  text-align: center;
+}
+.header nav ul li a {
+  display: block;
+  position: relative;
+}
+.header nav ul li a span {
+  display: block;
+  width: 100%;
+}
+.header__icon {
+  display: block;
+  margin: 0 auto;
+}
+.header__search {
+  border-radius: 20px;
+  border: solid 1px #e4e4e4;
+  background-color: #ffffff;
+  padding: 10px;
+}
+.header__search-text {
+  font-family: LeroyMerlinLight;
+  font-size: 14px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #4a4a4a;
+}
+.header__search-icon {
+  float: right;
+}
+.header__località {
+  cursor: pointer;
+}
+.header__località-icon {
+  display: inline;
+  float: left;
+}
+.header__località-title {
+  font-family: LeroyMerlinSans;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #4a4a4a;
+  display: block;
+}
+.header__località-subtitle {
+  font-family: LeroyMerlinSans;
+  font-size: 10px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #9b9b9b;
+  display: block;
+}
+.header__località-text {
+  display: inline;
+  float: left;
+  padding-top: 5px;
+}
+.App-logo-small {
+  display: block;
+  float: left;
+  position: relative;
+  margin: 5px;
+}
+.header {
+  display: none;
+}
+@media (min-width: 1200px) {
+  .App-logo-small {
+    display: none;
+  }
+  .header {
+    display: block;
+  }
+}

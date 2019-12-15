@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import logo from "./assets/img/logo.svg";
-import img_attivita_1 from "./assets/img/attivita_1.jpg";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import axios from "axios";
+
+import Header from "./components/Header/Header";
+import Card from "./components/Card/Card";
+import Result from "./components//Result/Result";
 
 // import tree from "./constants/tree";
 // import results from "./constants/results";
@@ -25,18 +28,26 @@ class App extends Component {
       resultStore: [],
 
       //Classe navigazione che attiva e disattiva il cosino verde
-      navActive: [0, "active"]
+      navActive: [0, "active"],
+      //Checked image
+      blurImg: null,
+      //Disattivo flexbox se la categoria è 'dimensioni'
+      stepCardDisplay: "",
+      //check Card dimensioni
+      checkDimension: null
     };
   }
 
   clickNav = e => {
     e.preventDefault();
-    const { step } = this.state;
+    const { step, checkTree } = this.state;
 
     if (e.target.id <= step) {
       this.setState({
-        step: e.target.id,
-        navActive: [e.target.id + 1, "active"]
+        step: parseInt(e.target.id),
+        navActive: [parseInt(e.target.id) + 1, "active"],
+        checkTree: [...checkTree.slice(0, parseInt(e.target.id))],
+        blurImg: null
       });
     }
   };
@@ -67,79 +78,151 @@ class App extends Component {
       return lastElement.results;
     };
     const resultsArr = navigazione(checkTree, treeStore, step);
-    console.log(resultsArr);
 
     //Faccio la map di resultStore (API) dove resultArr uguale a resultStore mi credo l'elemento
     return resultStore.map((element, index) => {
       for (let i = 0; i < resultsArr.length; i++) {
         if (resultsArr[i] === index + 1) {
           return (
-            <div key={index}>
-              <p>{element.id}</p>
-              <p>{element.title}</p>
-              <p>{element.description}</p>
-              <p>{element.url}</p>
-            </div>
+            <Result
+              key={index}
+              title={element.title}
+              description={element.description}
+              url={element.url}
+            ></Result>
           );
         }
       }
     });
   };
   showStep = () => {
-    const { stepStore, step, checkTree, treeStore, resultStore } = this.state;
+    const {
+      stepStore,
+      step,
+      checkTree,
+      treeStore,
+      resultStore,
+      blurImg,
+      stepCardDisplay,
+      checkDimension
+    } = this.state;
+
     const stepArr = [];
     for (let i = 0; i < stepStore.length; i++) {
       stepArr[i] = stepStore[i].answers;
     }
+
     if (step < stepStore.length) {
       return stepArr[step].map((element, index) => {
         if (stepStore[step].category === "Dimensioni") {
-          return (
-            <div
-              className="step-card"
-              key={index}
-              onClick={() => {
-                const { checkTree } = this.state;
-                checkTree[step] = index;
-                this.setState({
-                  checkTree: checkTree
-                });
-              }}
-            >
-              <div className="title">{element.title}</div>
-              <div className="description">{element.description}</div>
-            </div>
-          );
-        } else {
-          return (
-            <div className="step-card" key={index}>
-              <img
-                alt="img_alt"
-                src={require(`./assets/img/${element.image}`)}
+          if (checkDimension === index) {
+            return (
+              <div
+                className="step-card__dimensioni step-card__dimensioni--active"
+                key={index}
                 onClick={() => {
+                  const { checkTree } = this.state;
+                  checkTree[step] = index;
+                  this.setState({
+                    checkTree: checkTree,
+                    checkDimension: index
+                  });
+                }}
+              >
+                <div className="step-card__dimensioni__title">
+                  <span className="">{element.title}</span>
+                </div>
+                <div className="step-card__dimensioni__description">
+                  <span>{element.description}</span>
+                </div>
+              </div>
+            );
+          } else {
+            return (
+              <div
+                className="step-card__dimensioni"
+                key={index}
+                onClick={() => {
+                  const { checkTree } = this.state;
+                  checkTree[step] = index;
+                  this.setState({
+                    checkTree: checkTree,
+                    checkDimension: index
+                  });
+                }}
+              >
+                {element.image ? (
+                  <img src={require(`./assets/img/${element.image}`)}></img>
+                ) : null}
+                <div className="step-card__dimensioni__title">
+                  <span>{element.title}</span>
+                </div>
+                <div className="step-card__dimensioni__description">
+                  <span>{element.description}</span>
+                </div>
+              </div>
+            );
+          }
+        } else {
+          if (blurImg === index) {
+            return (
+              <Card
+                key={index}
+                onclick={() => {
+                  this.setState({
+                    blurImg: index
+                  });
+                }}
+                image={require(`./assets/img/${element.image}`)}
+                checkedImgOnClick={() => {
                   const { checkTree } = this.state;
                   checkTree[step] = index;
                   this.setState({
                     checkTree: checkTree
                   });
                 }}
-              />
-              <div className="title">{element.title}</div>
-              <div className="description">{element.description}</div>
-            </div>
-          );
+                filter={"filter--active"}
+                title={element.title}
+                description={element.description}
+              ></Card>
+            );
+          } else {
+            return (
+              <Card
+                key={index}
+                onclick={() => {
+                  this.setState({
+                    blurImg: index
+                  });
+                }}
+                image={require(`./assets/img/${element.image}`)}
+                checkedImgOnClick={() => {
+                  const { checkTree } = this.state;
+                  checkTree[step] = index;
+                  this.setState({
+                    checkTree: checkTree
+                  });
+                }}
+                filter={""}
+                title={element.title}
+                description={element.description}
+              ></Card>
+            );
+          }
         }
       });
     } else {
-      return <div>{this.showResults()}</div>;
+      return null;
     }
   };
+
   nextStep = () => {
     const { step } = this.state;
 
     this.setState({
       step: parseInt(step) + 1,
-      navActive: [parseInt(step + 1), "active"]
+      navActive: [parseInt(step + 1), "active"],
+      blurImg: null
     });
   };
   componentDidMount() {
@@ -149,7 +232,6 @@ class App extends Component {
       )
       .then(res => {
         const persons = res.data;
-        console.log(persons.results);
         this.setState({
           treeStore: persons.tree,
           resultStore: persons.results,
@@ -165,11 +247,19 @@ class App extends Component {
       step,
       treeStore,
       checkTree,
-      resultStore
+      resultStore,
+      stepCardDisplay
     } = this.state;
 
+    const showTitle = stepStore.map((element, index) => {
+      if (index === step) {
+        return <h1>{element.question}</h1>;
+      }
+    });
+    console.log(checkTree);
+    console.log("step " + step);
     const navArray = stepStore.map((element, index) => {
-      if (navActive[0] == index) {
+      if (index - 1 < step) {
         return (
           <Navbar
             navClass={navActive[1]}
@@ -191,16 +281,12 @@ class App extends Component {
         );
       }
     });
-
     return (
       <div className="App">
         <header className="App-header">
-          <img
-            src={logo}
-            className="App-logo"
-            alt="logo"
-            onClick={this.clickRandom}
-          />
+          <img src={logo} className="App-logo-small" alt="logo" />
+
+          <Header></Header>
         </header>
         <div className="App-container">
           {/* CHIP CONTAINER */}
@@ -208,29 +294,45 @@ class App extends Component {
             <div className="chip-container">{navArray}</div>
           ) : null}
 
-          <br />
+          {/*Title div */}
+          {step + 1 <= stepStore.length ? (
+            <div className="main-title">{showTitle}</div>
+          ) : (
+            <div className="main-title">
+              <h1>Ecco cosa ti aiuterà a svolgere meglio il tuo lavoro!</h1>
+            </div>
+          )}
 
           {/* CARDS CONTAIONER  */}
-          <div className="step-cards-container">{this.showStep()}</div>
+          {step === 3 ? (
+            <div className="cards-container--deactive">{this.showStep()}</div>
+          ) : (
+            <div className="cards-container">{this.showStep()}</div>
+          )}
         </div>
-
-        <br />
+        {/*RISULTATI */}
+        {step + 1 > stepStore.length ? (
+          <div className="result">{this.showResults()}</div>
+        ) : null}
 
         {/* BUTTON */}
-
-        {checkTree[step] !== undefined ? (
-          <div
-            className="button "
-            onClick={checkTree[step] !== undefined ? this.nextStep : null}
-          >
-            <span>CONTINUA</span>
-          </div>
-        ) : (
-          <div
-            className="button disabled"
-            onClick={checkTree[step] !== undefined ? this.nextStep : null}
-          >
-            <span>CONTINUA</span>
+        {step + 1 > stepStore.length ? null : (
+          <div className="button-container">
+            {checkTree[step] !== undefined ? (
+              <div
+                className="button "
+                onClick={checkTree[step] !== undefined ? this.nextStep : null}
+              >
+                <span>CONTINUA</span>
+              </div>
+            ) : (
+              <div
+                className="button disabled"
+                onClick={checkTree[step] !== undefined ? this.nextStep : null}
+              >
+                <span>CONTINUA</span>
+              </div>
+            )}
           </div>
         )}
       </div>
