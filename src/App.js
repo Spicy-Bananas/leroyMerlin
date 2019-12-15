@@ -287,6 +287,7 @@ class App extends Component {
           <img src={logo} className="App-logo-small" alt="logo" />
 
           <Header></Header>
+          <div className="background-header"></div>
         </header>
         <div className="App-container">
           {/* CHIP CONTAINER */}

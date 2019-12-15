@@ -4,7 +4,7 @@ import "./Header.css";
 
 import { ReactComponent as Help } from "./../../assets/img/aiuto.svg";
 import { ReactComponent as Accedi } from "./../../assets/img/accedi.svg";
-import { ReactComponent as Search } from "./../../assets/img/search.svg";
+import search from "./../../assets/img/lente.png";
 import { ReactComponent as Località } from "./../../assets/img/localita.svg";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -18,12 +18,12 @@ class Header extends Component {
   render() {
     return (
       <div className="header">
-        <Container fluid={true}>
+        <Container fluid={true} className="">
           <Row>
-            <Col xs="2">
+            <Col xs="1">
               <img src={logo} className="App-logo header__logo" alt="logo" />
             </Col>
-            <Col xs="2">
+            <Col xs="3">
               <a href="#">
                 <div className="header__località">
                   <Località className="header__località-icon"></Località>
@@ -40,8 +40,11 @@ class Header extends Component {
             </Col>
             <Col xs="4">
               <div className="header__search">
-                <span className="header__search-text">Cosa stai cercando?</span>
-                <Search className="header__search-icon"></Search>
+                <input
+                  className="header__search-text"
+                  placeholder="Cosa stai cercando?"
+                ></input>
+                <img src={search} className="header__search-icon"></img>
               </div>
             </Col>
             <Col xs="4">
