@@ -421,6 +421,7 @@ body {
     width: 100%;
   }
   .button {
+    cursor: pointer;
     background-color: #66cc33;
     margin: 0 auto;
     width: 375px;
