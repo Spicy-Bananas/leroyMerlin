@@ -10,27 +10,28 @@ import logo from "./../../assets/img/logo.svg";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Row, Container } from "react-bootstrap";
+import store from "./../../constants/stores";
 
 class Località extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      localitàStore: []
+      localitàStore: [...store]
     };
   }
-  componentDidMount() {
-    axios
-      .get(
-        "https://mctsuite.it.nttdata-emea.com/preview/tag_ntt_project_work/stores.json"
-      )
-      .then(res => {
-        const località = res.data;
-        console.log(res.data);
-        this.setState({
-          localitàStore: [...località]
-        });
-      });
-  }
+  // componentDidMount() {
+  //   axios
+  //     .get(
+  //       "https://mctsuite.it.nttdata-emea.com/preview/tag_ntt_project_work/stores.json"
+  //     )
+  //     .then(res => {
+  //       const località = res.data;
+  //       console.log(res.data);
+  //       this.setState({
+  //         localitàStore: [...località]
+  //       });
+  //     });
+  // }
   render() {
     const { localitàStore } = this.state;
 

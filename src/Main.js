@@ -11,9 +11,9 @@ import Result from "./components/Result/Result";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Row, Container } from "react-bootstrap";
 
-// import tree from "./constants/tree";
-// import results from "./constants/results";
-// import steps from "./constants/steps";
+import tree from "./constants/tree";
+import results from "./constants/results";
+import steps from "./constants/steps";
 
 class Main extends Component {
   constructor(props) {
@@ -24,11 +24,11 @@ class Main extends Component {
       checkTree: [],
 
       //API Steps
-      stepStore: [],
+      stepStore: [steps],
       //API Tree
-      treeStore: [],
+      treeStore: [tree],
       //API Results
-      resultStore: [],
+      resultStore: [results],
 
       //Classe navigazione che attiva e disattiva il cosino verde
       navActive: [0, "active"],
@@ -236,20 +236,20 @@ class Main extends Component {
       checkDimension: null
     });
   };
-  componentDidMount() {
-    axios
-      .get(
-        `https://mctsuite.it.nttdata-emea.com/preview/tag_ntt_project_work/wizard_config.json`
-      )
-      .then(res => {
-        const persons = res.data;
-        this.setState({
-          treeStore: persons.tree,
-          resultStore: persons.results,
-          stepStore: persons.steps
-        });
-      });
-  }
+  // componentDidMount() {
+  //   axios
+  //     .get(
+  //       `https://mctsuite.it.nttdata-emea.com/preview/tag_ntt_project_work/wizard_config.json`
+  //     )
+  //     .then(res => {
+  //       const persons = res.data;
+  //       this.setState({
+  //         treeStore: persons.tree,
+  //         resultStore: persons.results,
+  //         stepStore: persons.steps
+  //       });
+  //     });
+  // }
 
   render() {
     const {
