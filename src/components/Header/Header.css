@@ -16,8 +16,9 @@
 }
 .header nav ul li {
   float: left;
-  margin-left: 30px;
+  margin-left: 50px;
   text-align: center;
+  position: relative;
 }
 .header nav ul li a {
   display: block;
@@ -108,5 +109,19 @@
   }
   .header {
     display: block;
+  }
+  .header nav ul li {
+    margin-left: 15px;
+  }
+}
+@media (min-width: 1440px) {
+  .App-logo-small {
+    display: none;
+  }
+  .header {
+    display: block;
+  }
+  .header nav ul li {
+    margin-left: 50px;
   }
 }

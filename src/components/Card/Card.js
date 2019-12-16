@@ -15,10 +15,13 @@ class Card extends Component {
       title,
       description,
       checkedImgOnClick,
-      filter
+      filter,
+      classDiv,
+      classTitle,
+      classDescription
     } = this.props;
     return (
-      <div className="step-card">
+      <div className={classDiv}>
         <div className="container__img" onClick={onclick}>
           <div className={`filter ${filter}`}>
             <Checked className="filter__checked"></Checked>
@@ -26,8 +29,8 @@ class Card extends Component {
           <img alt="img_alt" src={image} onClick={checkedImgOnClick} />
         </div>
 
-        <div className="title">{title}</div>
-        <div className="description">{description}</div>
+        <div className={classTitle}>{title}</div>
+        <div className={classDescription}>{description}</div>
       </div>
     );
   }

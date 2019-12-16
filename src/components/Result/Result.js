@@ -11,22 +11,20 @@ class Result extends Component {
   render() {
     const { title, description, url } = this.props;
     return (
-      <div className="result__card">
-        <h3>{title}</h3>
-        <Container>
-          <Row>
-            <Col>
-              <div className="result__container-img">
-                <img src="https://www.controradio.it/wp-content/uploads/2019/02/Leroy-Merlin-loja-de-Leiria-Distribuic%CC%A7a%CC%83o-Hoje.jpg"></img>
-              </div>
-            </Col>
-          </Row>
-        </Container>
+      <Row>
+        <Col>
+          <div className="result__card">
+            <h3>{title}</h3>
 
-        <p>{description}</p>
+            <div className="result__container-img">
+              <img src="https://www.controradio.it/wp-content/uploads/2019/02/Leroy-Merlin-loja-de-Leiria-Distribuic%CC%A7a%CC%83o-Hoje.jpg"></img>
+            </div>
+            <p>{description}</p>
 
-        <a href={url}> ECCO COSA ABBIAMO SCELTO PER TE</a>
-      </div>
+            <a href={url}> ECCO COSA ABBIAMO SCELTO PER TE</a>
+          </div>
+        </Col>
+      </Row>
     );
   }
 }

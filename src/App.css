@@ -59,6 +59,7 @@ body {
   float: left;
   position: relative;
   z-index: 99;
+  background-color: #fff;
 }
 .background-header {
   display: none;
@@ -83,7 +84,6 @@ body {
   flex-direction: row;
   width: 100%;
   margin-top: 22px;
-
   padding: 0 10px;
 }
 
@@ -100,11 +100,13 @@ body {
   line-height: 24px;
   cursor: pointer;
   font-family: LeroyMerlinRegular;
+  transition: all 0.3s ease-out;
 }
 
 .chip.active {
   background-color: #66cc33;
   color: white;
+  transition: all 0.3s ease-out;
 }
 .cards-container {
   width: 100%;
@@ -169,12 +171,12 @@ body {
   margin-right: 30px;
   margin-left: 30px;
   color: #000;
-  transition: all 0.4s ease-out;
+  transition: all 0.2s ease-out;
 }
 .step-card__dimensioni--active {
   border: 2px solid #66cc33;
   color: #66cc33;
-  transition: all 0.4s ease-out;
+  transition: all 0.2s ease-out;
 }
 .step-card__dimensioni__title {
   width: 100%;
@@ -270,7 +272,9 @@ body {
   transform: translate(-50%, -50%);
   z-index: 99;
 }
-
+.main-title {
+  margin-bottom: 15px;
+}
 .main-title h1 {
   font-family: LeroyMerlinBold;
   font-size: 32px;
@@ -281,7 +285,7 @@ body {
   letter-spacing: normal;
   text-align: center;
   color: #000000;
-  margin: 30px 32px;
+  margin: 30px 0;
 }
 
 /* MEDIA QUERY BREAKPONT EXAMPLE */
@@ -361,6 +365,9 @@ body {
 
 /* desktop */
 @media (min-width: 1024px) {
+  .App-header {
+    background-color: #f8f8f8;
+  }
   .background-header {
     display: block;
   }
@@ -388,6 +395,9 @@ body {
   }
   .main-title {
     margin-top: 40px;
+  }
+  .main-title h1 {
+    font-size: 30px;
   }
   .cards-container--deactive {
     display: flex;
@@ -438,5 +448,16 @@ body {
     letter-spacing: normal;
     text-align: center;
     width: 375px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .cards-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: flex-start;
+    align-items: flex-start;
   }
 }
