@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import "./../../App.css";
 import "./Località.css";
@@ -13,9 +14,33 @@ import { Col, Row, Container } from "react-bootstrap";
 class Località extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      localitàStore: []
+    };
+  }
+  componentDidMount() {
+    axios
+      .get(
+        "https://mctsuite.it.nttdata-emea.com/preview/tag_ntt_project_work/stores.json"
+      )
+      .then(res => {
+        const località = res.data;
+        console.log(res.data);
+        this.setState({
+          localitàStore: [...località]
+        });
+      });
   }
   render() {
+    const { localitàStore } = this.state;
+
+    const showLocalità = localitàStore.map((element, index) => {
+      return (
+        <option key={index} value={element.storeSlug}>
+          {element.storeName}
+        </option>
+      );
+    });
     return (
       <div className="Località">
         <header className="App-header">
@@ -34,19 +59,19 @@ class Località extends Component {
               <h2 className="Località__h2">
                 Seleziona il tuo negozio di riferimento
               </h2>
-              <select name="località" className="Select">
-                <option value="volvo">ASSAGO</option>
-                <option value="saab">SAAB</option>
-                <option value="fiat">Fiat</option>
-                <option value="audi">Audi</option>
-              </select>
+              <div className="prova">
+                <select name="località" className="Select">
+                  {showLocalità}
+                </select>
+              </div>
             </div>
-
-            <div className="Località__continua">
-              <span>
-                <a href="#">CONTINUA</a>
-              </span>
-            </div>
+            <Link to="/main">
+              <div className="Località__continua">
+                <span>
+                  <a href="#">CONTINUA</a>
+                </span>
+              </div>
+            </Link>
           </div>
         </div>
         <div className="Località__padding"></div>

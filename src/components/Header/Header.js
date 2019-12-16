@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import logo from "./../../assets/img/logo.svg";
 import "./Header.css";
 
+import { Link } from "react-router-dom";
+
 import { ReactComponent as Help } from "./../../assets/img/aiuto.svg";
 import { ReactComponent as Accedi } from "./../../assets/img/accedi.svg";
 import search from "./../../assets/img/lente.png";
@@ -26,7 +28,7 @@ class Header extends Component {
               <img src={logo} className="App-logo header__logo" alt="logo" />
             </Col>
             <Col xs={3}>
-              <a href="#">
+              <Link to="/località">
                 <div className="header__località">
                   <Località className="header__località-icon"></Località>
                   <div className="header__località-text">
@@ -38,7 +40,7 @@ class Header extends Component {
                     </span>
                   </div>
                 </div>
-              </a>
+              </Link>
             </Col>
             <Col xs={4}>
               <div className="header__search">
