@@ -461,4 +461,7 @@ body {
     align-content: flex-start;
     align-items: flex-start;
   }
+  .button {
+    margin-bottom: 80px;
+  }
 }
