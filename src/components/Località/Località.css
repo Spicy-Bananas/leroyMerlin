@@ -71,7 +71,7 @@
   padding: 22px;
   width: 100%;
   height: 100%;
-  background-image: url(https://upload.wikimedia.org/wikipedia/commons/9/9f/Raccoon_climbing_in_tree_-_Cropped_and_color_corrected.jpg);
+  background-image: url(./../../assets/img/bg.jpg);
   background-size: cover;
   background-position: center;
 }
