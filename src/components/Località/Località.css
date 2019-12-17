@@ -135,6 +135,8 @@
   }
   .Località__content {
     padding: 0 20px;
+    max-width: 720px;
+    margin: 0 auto;
   }
   .Select {
     float: left;

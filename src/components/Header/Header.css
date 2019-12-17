@@ -19,10 +19,16 @@
   margin-left: 50px;
   text-align: center;
   position: relative;
+  cursor: pointer;
 }
 .header nav ul li a {
   display: block;
   position: relative;
+  color: #000;
+  text-decoration: none;
+}
+.header nav ul li a:hover {
+  color: #66cc33;
 }
 .header nav ul li a span {
   display: block;
@@ -124,4 +130,10 @@
   .header nav ul li {
     margin-left: 50px;
   }
+}
+
+.shop {
+  color: #000;
+}
+.shop:hover {
 }

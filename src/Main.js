@@ -24,11 +24,11 @@ class Main extends Component {
       checkTree: [],
 
       //API Steps
-      stepStore: [steps],
+      stepStore: [],
       //API Tree
-      treeStore: [tree],
+      treeStore: [],
       //API Results
-      resultStore: [results],
+      resultStore: [],
 
       //Classe navigazione che attiva e disattiva il cosino verde
       navActive: [0, "active"],
@@ -236,20 +236,20 @@ class Main extends Component {
       checkDimension: null
     });
   };
-  // componentDidMount() {
-  //   axios
-  //     .get(
-  //       `https://mctsuite.it.nttdata-emea.com/preview/tag_ntt_project_work/wizard_config.json`
-  //     )
-  //     .then(res => {
-  //       const persons = res.data;
-  //       this.setState({
-  //         treeStore: persons.tree,
-  //         resultStore: persons.results,
-  //         stepStore: persons.steps
-  //       });
-  //     });
-  // }
+  componentDidMount() {
+    axios
+      .get(
+        `https://mctsuite.it.nttdata-emea.com/preview/tag_ntt_project_work/wizard_config.json`
+      )
+      .then(res => {
+        const persons = res.data;
+        this.setState({
+          treeStore: persons.tree,
+          resultStore: persons.results,
+          stepStore: persons.steps
+        });
+      });
+  }
 
   render() {
     const {

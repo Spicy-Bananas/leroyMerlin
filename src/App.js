@@ -13,8 +13,12 @@ class App extends Component {
     return (
       <Route>
         <Route exact path="/main" render={routerProps => <Main></Main>} />
-        <Route exact path="/" render={routerProps => <Località></Località>} />
-        <Route exact path="/login" render={routerProps => <Login></Login>} />
+        <Route
+          exact
+          path="/località"
+          render={routerProps => <Località></Località>}
+        />
+        <Route exact path="/" render={routerProps => <Login></Login>} />
       </Route>
     );
   }

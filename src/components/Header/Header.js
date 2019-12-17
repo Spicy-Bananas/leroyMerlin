@@ -28,7 +28,7 @@ class Header extends Component {
               <img src={logo} className="App-logo header__logo" alt="logo" />
             </Col>
             <Col xs={3}>
-              <Link to="/località">
+              <Link to="/località" className="shop">
                 <div className="header__località">
                   <Località className="header__località-icon"></Località>
                   <div className="header__località-text">
@@ -61,10 +61,10 @@ class Header extends Component {
                     </a>
                   </li>
                   <li>
-                    <a hre="#">
+                    <Link to="/">
                       <Accedi className="header__icon"></Accedi>
                       <span>Accedi</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <a hre="#">

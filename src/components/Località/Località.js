@@ -16,22 +16,22 @@ class Località extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      localitàStore: [...store]
+      localitàStore: []
     };
   }
-  // componentDidMount() {
-  //   axios
-  //     .get(
-  //       "https://mctsuite.it.nttdata-emea.com/preview/tag_ntt_project_work/stores.json"
-  //     )
-  //     .then(res => {
-  //       const località = res.data;
-  //       console.log(res.data);
-  //       this.setState({
-  //         localitàStore: [...località]
-  //       });
-  //     });
-  // }
+  componentDidMount() {
+    axios
+      .get(
+        "https://mctsuite.it.nttdata-emea.com/preview/tag_ntt_project_work/stores.json"
+      )
+      .then(res => {
+        const località = res.data;
+        console.log(res.data);
+        this.setState({
+          localitàStore: [...località]
+        });
+      });
+  }
   render() {
     const { localitàStore } = this.state;
 
